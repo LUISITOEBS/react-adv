@@ -1,6 +1,6 @@
+import { ProductCard as ProductCardComponent } from './ProductCard';
 import { ProductCardHOCProps } from '../interfaces/interfaces';
 import { ProductButtons } from './ProductButtons';
-import { ProductCard as ProductCardComponent } from './ProductCard';
 import { ProductImage } from './ProductImage';
 import { ProductTitle } from './ProductTitle';
 
