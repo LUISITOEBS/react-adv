@@ -1,14 +1,12 @@
 import { ProductCard, ProductImage, ProductTitle, ProductButtons } from '../components';
 import '../styles/custom-styles.css';
-
-const product = {
-    id: '1',
-    title: 'Coffee Mug',
-    image: './coffee-mug.png'
-}
+import { products } from '../data/products';
+import { useShoppingCart } from '../hooks/useShoppingCart';
 
 export const ShoppingPage = () => {
-    
+
+    const { shoppingCart, onProductCountChange } = useShoppingCart();
+
     return (
         <div>
             <h1>
@@ -21,32 +19,52 @@ export const ShoppingPage = () => {
                 flexDirection: 'row',
                 flexWrap: 'wrap'
             }}>
-                <ProductCard 
-                    product={ product }
-                    style={{ backgroundColor: 'red' }}
-                >
-                    <ProductImage style={{ boxShadow: '10px 10px 10px rgba(0,0,0,0.4)' }}/>
-                    <ProductTitle style={{ color: 'white' }}/>
-                    <ProductButtons style={{ display: 'flex', justifyContent: 'end' }}/>
-                </ProductCard>
+                <div className='shoping-cart'>
+                    {
+                        Object.entries(shoppingCart).map( ( [key, product] ) => (
+                            <ProductCard
+                                key={ key }
+                                product={ product }
+                                className="bg-dark text-white"
+                                style={{ width: '100px' }}
+                                value={ product.count }
+                                onChange={ ( event ) => onProductCountChange( event ) }
+                            >
+                                <ProductCard.Image className="custom-image" style={{ boxShadow: '10px 10px 10px rgba(0,0,0,0.4)' }}/>
+                                <ProductCard.Buttons 
+                                    className="custom-bottoms"
+                                    style={{ 
+                                        display: 'flex',
+                                        justifyContent: 'center'
+                                    }}
+                                />
+                            </ProductCard>
+                        ))
+                    }
+                </div>
 
-                 <ProductCard 
-                    product={ product }
-                    className="bg-dark text-white"
-                >
-                    <ProductImage className="custom-image"/>
-                    <ProductTitle className="text-bold" />
-                    <ProductButtons className="custom-bottoms" />
-                </ProductCard>
 
-                <ProductCard 
-                    product={ product }
-                    className="bg-dark text-white"
-                >
-                    <ProductCard.Image className="custom-image" style={{ boxShadow: '10px 10px 10px rgba(0,0,0,0.4)' }}/>
-                    <ProductCard.Title className="text-bold"/>
-                    <ProductCard.Buttons className="custom-bottoms"/>
-                </ProductCard>
+
+                {
+                    products.map(product => (
+                        <ProductCard
+                            key={ product.id }
+                            product={ product }
+                            className="bg-dark text-white"
+                            onChange={ ( event ) => onProductCountChange( event ) }
+                            value={ shoppingCart[product.id]?.count || 0 }
+                        >
+                            <ProductCard.Image className="custom-image" style={{ boxShadow: '10px 10px 10px rgba(0,0,0,0.4)' }}/>
+                            <ProductCard.Title className="text-bold"/>
+                            <ProductCard.Buttons className="custom-bottoms"/>
+                        </ProductCard>
+                    ))
+                }
+            </div>
+            <div>
+                <code>
+                    { JSON.stringify( shoppingCart, null, 5 ) }
+                </code>
             </div>
             
         </div>
