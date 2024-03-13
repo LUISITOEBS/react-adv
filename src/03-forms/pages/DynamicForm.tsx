@@ -25,8 +25,6 @@ for (const input of formJson) {
             schema = schema.email('Debe ser de tipo email')
         }
 
-        //Otras reglas
-
         requiredFields[input.name] = schema;
     }
 }
