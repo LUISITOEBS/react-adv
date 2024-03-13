@@ -47,8 +47,6 @@ export const FormikBasicPage = () => {
 
     const { handleChange, handleSubmit, touched, handleBlur, errors } = formik;
     const { firstName, lastName, email } =  formik.values;
-
-    console.log( errors );
     
 
     return (

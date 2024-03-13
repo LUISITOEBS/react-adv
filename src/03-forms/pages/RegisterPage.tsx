@@ -27,7 +27,6 @@ export const RegisterPage = () => {
 
                 <input
                     className={ `${name.trim().length <= 0 && "has-error"}` }
-                    id=""
                     name="name"
                     placeholder="Name"
                     onChange={ onChange }
@@ -40,7 +39,6 @@ export const RegisterPage = () => {
 
                 <input
                     className={ `${ !isValidEmail( email )  && "has-error"}` }
-                    id=""
                     name="email"
                     placeholder="Email"
                     onChange={ onChange }
@@ -52,7 +50,6 @@ export const RegisterPage = () => {
 
                 <input
                     className=''
-                    id=""
                     name="password1"
                     placeholder="Password"
                     onChange={ onChange }
@@ -64,7 +61,6 @@ export const RegisterPage = () => {
                 { password1.trim().length > 6 &&  password1.trim().length > 0 && <span>La contraseña es menor de 6 caracteres</span> }
 
                 <input 
-                    id=""
                     name="password2"
                     placeholder="Repeat Password"
                     onChange={ onChange }
